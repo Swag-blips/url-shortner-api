@@ -1,5 +1,8 @@
 import { Express, Request, Response } from "express";
-import { createShortUrl } from "../controller/shortUrl.controller";
+import {
+  createShortUrl,
+  handleRedirect,
+} from "../controller/shortUrl.controller";
 
 function routes(app: Express) {
   app.get("/", (req: Request, res: Response) => {
@@ -7,6 +10,7 @@ function routes(app: Express) {
     return;
   });
   app.post("/api/url", createShortUrl);
+  app.get("/:shortId", handleRedirect);
 }
 
 export default routes;
