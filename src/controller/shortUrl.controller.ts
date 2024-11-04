@@ -7,7 +7,7 @@ export async function createShortUrl(req: Request, res: Response) {
 
   const newUrl = await shortUrl.create({ destination });
 
-  res.send({ newUrl });
+  res.status(201).json({ newUrl });
   return;
 }
 
@@ -17,7 +17,7 @@ export async function handleRedirect(req: Request, res: Response) {
   const short = await shortUrl.findOne({ shortId }).lean();
 
   if (!short) {
-    res.status(404);
+    res.status(404).send({ error: "Not found" });
     return;
   }
 
