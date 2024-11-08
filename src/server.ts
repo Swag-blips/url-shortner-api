@@ -8,11 +8,13 @@ dotenv.config();
 
 export const app = express();
 
+const port = process.env.PORT;
+
 app.use(express.json());
 // const port = config.get("port");
 
-app.listen(4000, () => {
-  console.log("Application listening on port ", 4000);
+app.listen(port, () => {
+  console.log("Application listening on port ", port);
   connectMongo();
   routes(app);
 });
