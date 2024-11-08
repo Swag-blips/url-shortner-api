@@ -20,12 +20,10 @@ export async function createShortUrl(req: Request, res: Response) {
 
 export async function handleRedirect(req: Request, res: Response) {
   try {
-    console.log("route hit!");
     const { shortId } = req.params;
 
     const short = await shortUrl.findOne({ shortId }).lean();
 
-    console.log(short);
     if (!short) {
       res.status(404).send({ error: "Not found" });
       return;
@@ -34,7 +32,7 @@ export async function handleRedirect(req: Request, res: Response) {
     if (short.destination) {
       await analytics.create({ shortUrl: short._id });
 
-      return res.redirect(short.destination);
+      return res.status(302).redirect(short.destination);
     } else {
       res.status(404).json({ error: "ShortUrl not found" });
       return;

@@ -32,7 +32,7 @@ describe("GET /:shortId", () => {
   beforeEach(async () => {
     const shortEntry = await shortUrl.create({
       shortId: "23452",
-      destination: "https://devlinks.space",
+      destination: "https://www.devlinks.space",
     });
 
     testShortId = shortEntry.shortId;
@@ -41,7 +41,7 @@ describe("GET /:shortId", () => {
     const res = await request(app).get(`/api/url/${testShortId}`);
 
     expect(res.statusCode).toEqual(302);
-    expect(res.header.location).toEqual("https://devlinks.space");
+    expect(res.header.location).toEqual("https://www.devlinks.space");
   });
 
   it("returns 404 if the shortId is invalid", async () => {
@@ -54,4 +54,9 @@ describe("GET /:shortId", () => {
 
 afterAll(async () => {
   await mongoose.connection.close();
+});
+
+afterEach(async () => {
+  await shortUrl.deleteMany({});
+  await analytics.deleteMany({});
 });
