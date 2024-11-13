@@ -19,7 +19,7 @@ export async function createShortUrl(req: Request, res: Response) {
 }
 
 export async function handleRedirect(req: Request, res: Response) {
-
+  console.log(req.params.shortId);
   try {
     const { shortId } = req.params;
 
