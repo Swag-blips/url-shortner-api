@@ -19,6 +19,7 @@ export async function createShortUrl(req: Request, res: Response) {
 }
 
 export async function handleRedirect(req: Request, res: Response) {
+
   try {
     const { shortId } = req.params;
 
@@ -32,7 +33,7 @@ export async function handleRedirect(req: Request, res: Response) {
     if (short.destination) {
       await analytics.create({ shortUrl: short._id });
 
-      return res.status(302).redirect(short.destination);
+      res.status(200).json(short);
     } else {
       res.status(404).json({ error: "ShortUrl not found" });
       return;

@@ -4,7 +4,7 @@ import {
   getAnalytics,
   handleRedirect,
 } from "../controller/shortUrl.controller";
-import validateResource from "../../middleware/validateResource";
+import validateResource from "../middleware/validateResource";
 import shortUrlSchema from "../schemas/createShortUrl.schema";
 
 function routes(app: Express) {
