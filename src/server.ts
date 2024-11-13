@@ -5,12 +5,18 @@ import connectMongo from "./db/db";
 import rateLimit from "express-rate-limit";
 import dotenv from "dotenv";
 import cors from "cors";
+import swaggerJsDoc from "swagger-jsdoc";
+import swagger from "swagger-ui-express";
 
 dotenv.config();
 
 export const app = express();
 
+const spacs = swaggerJsDoc();
+app.use("/api-docs", swagger.serve, swagger.setup(spacs));
 const port = process.env.PORT;
+
+const options: swaggerJsDoc.Options = {};
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
