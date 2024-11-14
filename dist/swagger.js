@@ -8,6 +8,6 @@ const options = {
             version: "1.0.0",
         },
     },
-    apis: ["./src/**/*.ts"],
+    apis: ["./dist/**/*.js"],
 };
 exports.default = options;
