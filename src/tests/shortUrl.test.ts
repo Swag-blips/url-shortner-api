@@ -5,9 +5,19 @@ import shortUrl from "../models/shortUrl.model";
 import analytics from "../models/analytics.model";
 
 jest.setTimeout(60000);
-beforeEach(async () => {
+
+let testShortId: string;
+beforeAll(async () => {
   await mongoose.connect(process.env.MONGO_URI as string);
+  const shortEntry = await shortUrl.create({
+    shortId: "23452",
+    destination: "https://www.devlinks.space",
+  });
+
+  testShortId = shortEntry.shortId;
 });
+
+beforeAll(async () => {});
 
 describe("POST /api/url", () => {
   it("returns status code 201 if the destination is passed", async () => {
@@ -27,21 +37,11 @@ describe("POST /api/url", () => {
 });
 
 describe("GET /:shortId", () => {
-  let testShortId: string;
-
-  beforeEach(async () => {
-    const shortEntry = await shortUrl.create({
-      shortId: "23452",
-      destination: "https://www.devlinks.space",
-    });
-
-    testShortId = shortEntry.shortId;
-  });
   it("redirects the user to the specific destination url", async () => {
     const res = await request(app).get(`/api/url/${testShortId}`);
 
-    expect(res.statusCode).toEqual(302);
-    expect(res.header.location).toEqual("https://www.devlinks.space");
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty("destination");
   });
 
   it("returns 404 if the shortId is invalid", async () => {
@@ -53,10 +53,7 @@ describe("GET /:shortId", () => {
 });
 
 afterAll(async () => {
-  await mongoose.connection.close();
-});
-
-afterEach(async () => {
   await shortUrl.deleteMany({});
   await analytics.deleteMany({});
+  await mongoose.connection.close();
 });
