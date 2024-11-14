@@ -1,5 +1,5 @@
 import swaggerJsDoc from "swagger-jsdoc";
-import swagger from "swagger-ui-express";
+
 
 const options: swaggerJsDoc.Options = {
   definition: {
@@ -9,4 +9,7 @@ const options: swaggerJsDoc.Options = {
       version: "1.0.0",
     },
   },
+  apis: ["./src/**/*.ts"],
 };
+
+export default options;
