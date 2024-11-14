@@ -20,6 +20,7 @@ const port = process.env.PORT;
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
+  validate: { xForwardedForHeader: false },
 });
 
 app.use(limiter);

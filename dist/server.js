@@ -22,6 +22,7 @@ const port = process.env.PORT;
 const limiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,
     max: 5,
+    validate: { xForwardedForHeader: false },
 });
 exports.app.use(limiter);
 exports.app.use(express_1.default.json());
