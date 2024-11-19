@@ -11,6 +11,9 @@ function routes(app: Express) {
   app.post("/api/url", validateResource(shortUrlSchema), createShortUrl);
   app.get("/api/url/:shortId", handleRedirect);
   app.get("/api/analytics", getAnalytics);
+  app.get("/", (req:Request, res:Response) => {
+    res.send("Hello cronJob")
+  })
 }
 
 export default routes;
