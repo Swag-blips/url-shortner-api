@@ -19,7 +19,7 @@ const port = process.env.PORT;
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 5,
+  max: 10,
   validate: { xForwardedForHeader: false },
 });
 
@@ -28,7 +28,7 @@ app.use(limiter);
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:7700"],
   })
 );
 // const port = config.get("port");
