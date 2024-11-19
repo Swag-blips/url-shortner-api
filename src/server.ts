@@ -23,7 +23,7 @@ const limiter = rateLimit({
   validate: { xForwardedForHeader: false },
 });
 
-app.use(limiter);
+// app.use(limiter);
 
 app.use(express.json());
 app.use(
