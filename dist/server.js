@@ -21,10 +21,10 @@ exports.app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_expr
 const port = process.env.PORT;
 const limiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,
-    max: 10,
+    max: 20,
     validate: { xForwardedForHeader: false },
 });
-exports.app.use(limiter);
+// app.use(limiter);
 exports.app.use(express_1.default.json());
 exports.app.use((0, cors_1.default)({
     origin: ["http://localhost:5173", "http://localhost:7700"],
