@@ -1,7 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import shortId from "shortid";
 
-const newUrl = shortId.generate();
 
 export interface ShortURL extends Document {
   shortId: string;
@@ -13,7 +11,7 @@ const schema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    default: newUrl,
+   
   },
   destination: { type: String, required: true },
 });

@@ -17,6 +17,7 @@ exports.handleRedirect = handleRedirect;
 exports.getAnalytics = getAnalytics;
 const shortUrl_model_1 = __importDefault(require("../models/shortUrl.model"));
 const analytics_model_1 = __importDefault(require("../models/analytics.model"));
+const shortid_1 = __importDefault(require("shortid"));
 /**
  * @swagger
  * /api/url:
@@ -82,9 +83,10 @@ const analytics_model_1 = __importDefault(require("../models/analytics.model"));
  */
 function createShortUrl(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const id = shortid_1.default.generate();
         try {
             const { destination } = req.body;
-            const newUrl = yield shortUrl_model_1.default.create({ destination });
+            const newUrl = yield shortUrl_model_1.default.create({ shortId: id, destination });
             res.status(201).json({ newUrl });
             return;
         }

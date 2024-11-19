@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import shortUrl from "../models/shortUrl.model";
 import analytics from "../models/analytics.model";
+import shortid from "shortid";
 
 /**
  * @swagger
@@ -67,10 +68,12 @@ import analytics from "../models/analytics.model";
  */
 
 export async function createShortUrl(req: Request, res: Response) {
+  const id = shortid.generate();
+
   try {
     const { destination } = req.body;
 
-    const newUrl = await shortUrl.create({ destination });
+    const newUrl = await shortUrl.create({ shortId: id, destination });
 
     res.status(201).json({ newUrl });
     return;
