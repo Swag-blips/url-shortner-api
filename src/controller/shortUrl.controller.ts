@@ -78,7 +78,9 @@ export async function createShortUrl(req: Request, res: Response) {
     console.log(
       `an error occured from createShortUrl controller ${createShortUrl} `
     );
-    res.status(500).json({ message: "Internal server error" });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 }
 /**
@@ -147,7 +149,9 @@ export async function handleRedirect(req: Request, res: Response) {
     }
   } catch (err: any) {
     console.log("An error occurred in handleRedirect controller");
-    res.status(500).json({ message: "Internal server error" });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 }
 

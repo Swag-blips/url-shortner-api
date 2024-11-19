@@ -90,7 +90,9 @@ function createShortUrl(req, res) {
         }
         catch (err) {
             console.log(`an error occured from createShortUrl controller ${createShortUrl} `);
-            res.status(500).json({ message: "Internal server error" });
+            res
+                .status(500)
+                .json({ message: "Internal server error", error: err.message });
         }
     });
 }
@@ -158,7 +160,9 @@ function handleRedirect(req, res) {
         }
         catch (err) {
             console.log("An error occurred in handleRedirect controller");
-            res.status(500).json({ message: "Internal server error" });
+            res
+                .status(500)
+                .json({ message: "Internal server error", error: err.message });
         }
     });
 }
