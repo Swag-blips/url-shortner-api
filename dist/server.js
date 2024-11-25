@@ -30,7 +30,7 @@ exports.app.use((0, cors_1.default)({
     origin: [
         "http://localhost:5173",
         "http://localhost:7700",
-        "https://shortly-ten.vercel.app/",
+        "https://shortly-ten.vercel.app",
     ],
 }));
 // const port = config.get("port");
