@@ -12,7 +12,7 @@ function routes(app: Express) {
   app.get("/api/url/:shortId", handleRedirect);
   app.get("/api/analytics", getAnalytics);
   app.get("/", (req:Request, res:Response) => {
-    res.send("Hello cronJob")
+    res.send("ok")
   })
 }
 

@@ -11,7 +11,7 @@ function routes(app) {
     app.get("/api/url/:shortId", shortUrl_controller_1.handleRedirect);
     app.get("/api/analytics", shortUrl_controller_1.getAnalytics);
     app.get("/", (req, res) => {
-        res.send("Hello cronJob");
+        res.send("ok");
     });
 }
 exports.default = routes;
