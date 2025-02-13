@@ -32,6 +32,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:7700",
       "https://shortly-ten.vercel.app",
+      "https://min-short.vercel.app"
     ],
   })
 );
